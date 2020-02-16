@@ -4,6 +4,7 @@ from flask_cors import CORS
 from etherscan_service import EtherscanService
 from address_serializer import AddressSerializer
 import requests
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -21,7 +22,14 @@ def in_common(contracts):
     addresses_in_common = e.addresses_in_common(li_contracts)
     return AddressSerializer.render_json(addresses_in_common)
 
-@app.route("/dashboard-info/", methods=['GET'])    
+@app.route("/dashboard-info-2", methods=['GET', 'POST'])
+def dashboard():
+    """
+    Returns analysis on the given contract and category.
+    """
+    with open('fake-data.json') as fp:
+        to_ret = json.load(fp)
+    return to_ret
 
 
 

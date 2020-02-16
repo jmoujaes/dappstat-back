@@ -1,0 +1,31 @@
+{
+"ooi": [
+    {
+        "name": "My Crypto Heroes",
+        "category": "Gaming",
+        "shared_users": {"count": 2, "users": [{"address":"0xabc...xyz"}, {"address":"0xdef...uvw"}]},
+        "unique_users": {"count": 1, "users": [{"address":"0xghi...jkl"}]}
+    },
+    {
+        "name": "Brave Frontier Heroes",
+        "category": "Gaming",
+        "shared_users": {"count": 1, "users": [{"address":"0xabc...xyz"}]},
+        "unique_users": {"count": 0, "users": []}
+    }
+],
+"external_ooi": [
+    {
+        "name": "Uniswap",
+        "category": "Exchanges",
+        "shared_users": {"count": 1, "users": [{"address":"0xabc...xyz"}]}
+    }
+],
+"users": {
+    "count": 3,
+    "users": [
+        {"address":"0xabc...xyz"},
+        {"address":"0xdef...uvw"},
+        {"address":"0xaaa...zzz"}
+    ]
+    }
+}
