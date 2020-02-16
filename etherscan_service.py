@@ -11,7 +11,7 @@ class EtherscanService:
 
     def addresses_by_contract(self, contract):
         addresses = []
-        raw_json = self.connection(f"module=account&action=txlist&address={contract}&startblock=0&endblock=99999999&sort=asc&apikey={os.environ['ETHERSCAN_KEY']}")['result']
+        raw_json = self.connection(f"module=account&action=txlist&address={contract}&startblock=9488528&endblock=99999999&sort=asc&apikey={os.environ['ETHERSCAN_KEY']}")['result']
 
         for item in raw_json:
             if item['from'] not in addresses:
