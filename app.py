@@ -15,6 +15,14 @@ def addresses(contract):
     addresses = e.addresses_by_contract(contract)
     return AddressSerializer.render_json(addresses)
 
+@app.route("/analyze", methods=['POST'])
+def analyze():
+    e = EtherscanService()
+    data = request.json
+    users = Dapp.users(data['dapp_address'])
+    oois =  Dapp.ooi_info(data['dapp_address'], data['doi'])
+       
+
 @app.route("/<contracts>/common-addresses", methods=['GET'])
 def in_common(contracts):
     li_contracts = list(contracts.split(','))
