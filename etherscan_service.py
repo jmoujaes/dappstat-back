@@ -2,6 +2,7 @@ from flask import Flask
 from flask import jsonify
 from flask_restful import Resource, Api
 from flask_cors import CORS
+import os
 import requests
 
 class EtherscanService:
@@ -37,9 +38,14 @@ class EtherscanService:
 
 
     def addresses_in_common(self, contracts):
-        set_1 = set(self.addresses_by_contract(contracts[0]))
-        set_2 = set(self.addresses_by_contract(contracts[1]))
-        return list(set_1.intersection(set_2))
+        if contracts:
+            common = set(self.addresses_by_contract(contracts[0]))
+
+        for contract in contracts[1:]:
+            addresses = set(self.addresses_by_contract(contract))
+            common.intersection_update(addresses)
+
+        return len(list(common))
 
 
     def connection(self, params):

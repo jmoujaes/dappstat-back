@@ -20,8 +20,8 @@ def analyze():
     e = EtherscanService()
     data = request.json
     users = Dapp.users(data['dapp_address'])
-    oois =  Dapp.ooi_info(data['dapp_address'], data['doi'])
-       
+    oois =  Dapp.ooi_info(data['dapp_address'], data['category'])
+
 
 @app.route("/<contracts>/common-addresses", methods=['GET'])
 def in_common(contracts):
