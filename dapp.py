@@ -7,7 +7,7 @@ class Dapp:
 
     def find_info_by_address(address):
         result = Dapp.conn.query(f"SELECT organizations.name, organizations.category FROM contracts INNER JOIN organizations ON organizations.id = contracts.organization_id WHERE contracts.address = '{address}'")
-        return result[0]
+        return dict(result[0])
 
 
     def dapps_by_category(category):
@@ -72,14 +72,10 @@ class Dapp:
 
         return result
 
-    def users(contract, oois):
+    def users(contract):
         e = EtherscanService()
         count = len(e.addresses_by_contract(contract))
-        shared = len(e.addresses_in_common(contract, oois))
-        unique = len(e.unique_users(contract, oois))
 
         return {
             'count': count,
-            'total_shared': shared,
-            'total_unique': unique
         }
