@@ -1,5 +1,4 @@
 from flask import Flask
-from flask import jsonify
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from etherscan_service import EtherscanService
@@ -21,6 +20,8 @@ def in_common(contracts):
     e = EtherscanService()
     addresses_in_common = e.addresses_in_common(li_contracts)
     return AddressSerializer.render_json(addresses_in_common)
+
+@app.route("/dashboard-info/", methods=['GET'])    
 
 
 
