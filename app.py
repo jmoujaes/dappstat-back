@@ -44,15 +44,6 @@ def unique():
     addresses = e.unique_users(contract, ooi_contracts)
     return AddressSerializer.render_json(addresses)
 
-@app.route("/dashboard-info-2", methods=['GET', 'POST'])
-def dashboard():
-    """
-    Returns analysis on the given contract and category.
-    """
-    with open('fake-data.json') as fp:
-        to_ret = json.load(fp)
-        return to_ret
-
 
 if __name__ == '__main__':
    app.run(debug = True)
