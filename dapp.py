@@ -1,9 +1,9 @@
-from secrets import Secrets
 import records
+import os
 
 class Dapp:
     def __init__():
-        self.conn = records.database(Secrets.db_link)
+        self.conn = records.database(os.environ['DATABASE_URL'])
 
     def find_name_by_address(address):
         result = self.conn.query(f"SELECT organizations.name FROM contracts INNER JOIN organizations ON organizations.id = contracts.organization_id WHERE contracts.address = {address}")
