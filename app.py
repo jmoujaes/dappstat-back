@@ -1,10 +1,10 @@
 from flask import Flask
+from flask import request
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from etherscan_service import EtherscanService
 from address_serializer import AddressSerializer
-import requests
-import json
+
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +21,15 @@ def in_common(contracts):
     e = EtherscanService()
     addresses_in_common = e.addresses_in_common(li_contracts)
     return AddressSerializer.render_json(addresses_in_common)
+
+@app.route("/unique-users", methods=['POST'])
+def unique():
+    data = request.json
+    contract = data['contract']
+    ooi_contracts = data['ooi_contracts']
+    e = EtherscanService()
+    addresses = e.unique_users(contract, ooi_contracts)
+    return AddressSerializer.render_json(addresses)
 
 @app.route("/dashboard-info-2", methods=['GET', 'POST'])
 def dashboard():
