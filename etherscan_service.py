@@ -2,8 +2,6 @@ from flask import Flask
 from flask import jsonify
 from flask_restful import Resource, Api
 from flask_cors import CORS
-from secrets import Secrets
-import numpy
 import requests
 
 class EtherscanService:
@@ -12,7 +10,7 @@ class EtherscanService:
 
     def addresses_by_contract(self, contract):
         addresses = []
-        raw_json = self.connection(f"module=account&action=txlist&address={contract}&startblock=0&endblock=99999999&sort=asc&apikey={Secrets.etherscan_key()}")['result']
+        raw_json = self.connection(f"module=account&action=txlist&address={contract}&startblock=0&endblock=99999999&sort=asc&apikey={os.environ['ETHERSCAN_KEY']}")['result']
 
         for item in raw_json:
             if item['from'] not in addresses:

@@ -38,8 +38,7 @@ def dashboard():
     """
     with open('fake-data.json') as fp:
         to_ret = json.load(fp)
-    return to_ret
-
+        return to_ret
 
 
 if __name__ == '__main__':
