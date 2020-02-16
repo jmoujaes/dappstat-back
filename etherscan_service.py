@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import jsonify
 from flask_restful import Resource, Api
 from flask_cors import CORS
 import requests
@@ -21,11 +22,19 @@ class EtherscanService:
         return str(len(self.addresses_by_contract(contract)))
 
 
-    # def balance_by_address(self, addresses):
-    #     batches = chunk(addresses, 20)
-    #
-    #     for batch in batches:
-    #
+    def unique_users(self, contract, ooi_contracts):
+        ooi_addresses = set()
+        for c in ooi_contracts:
+            ooi_addresses.union(set(self.addresses_by_contract(c)))
+
+        user_addresses = self.addresses_by_contract(contract)
+
+        for address in user_addresses:
+            if address in ooi_contracts:
+                user_addresses.remove(address)
+
+        return user_addresses
+
 
     def addresses_in_common(self, contracts):
         set_1 = set(self.addresses_by_contract(contracts[0]))

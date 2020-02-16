@@ -6,5 +6,5 @@ class AddressSerializer:
         pass
 
     def render_json(addresses):
-        return jsonify({'Data':{'count': len(addresses),
-                        'addresses': addresses}})
+        return jsonify({'Data':{'addresses': addresses,
+                                'count': len(addresses),}})
